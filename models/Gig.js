@@ -1,22 +1,26 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const Gig = db.define('gig', {
-  title: {
+const Gig =db.define('students', {
+  id:{
+    type: Sequelize.INTEGER,
+    primaryKey:true
+  },
+  name: {
     type: Sequelize.STRING
   },
-  technologies: {
-    type: Sequelize.STRING
+  age: {
+    type: Sequelize.INTEGER
   },
-  description: {
-    type: Sequelize.STRING
+  marks1: {
+    type: Sequelize.INTEGER
   },
-  budget: {
-    type: Sequelize.STRING
+  marks2: {
+    type: Sequelize.INTEGER
   },
-  contact_email: {
-    type: Sequelize.STRING
-  }
+  marks3: {
+    type: Sequelize.INTEGER
+  },
 });
 
 Gig.sync().then(() => {

@@ -5,7 +5,7 @@ dotenv.config();
 
 module.exports =  new Sequelize(
 // 'postgres://postgres:123456@localhost:5432/codegig'
-'codegig',
+'student',
 'postgres',
 'task#123',
 {

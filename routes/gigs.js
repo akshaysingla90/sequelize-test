@@ -21,11 +21,12 @@ router.post('/add', (req, res) => {
  // Insert into table
  console.log('===========================')
     Gig.create({
-      "title":"aaaa",
-            "technologies" : "sss",
-            "description":"ssss",
-            "budget":"11",
-            "contact_email":"ytfhgf"
+      "id":"1",
+            "name" : "sakshi",
+            "age":"22",
+            "marks1":"66",
+            "marks2":"50",
+            "marks3":"56"
       })
       .then(gig => res.status(200).json({msg : "ok"}))
       .catch(err => res.render('error', {error:err.message}))
@@ -56,7 +57,7 @@ router.get('/:id', async (req, res) => {
   let data=await Gig.findOne({ where: { id: idToken } } )
   data.forEach(function (studentObj,index){
     let  result;
-   if( studentObj.marks1>35 && studentObj.marks2>35 && studentObj.marks2>35  ){
+   if( studentObj.mark1>35 && studentObj.mark2>35 && studentObj.mark3>35  ){
      result="pass"
       return result
    }
