@@ -3,7 +3,12 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-module.exports =  new Sequelize(process.env.DATABASE_URL, {
+module.exports =  new Sequelize(
+// 'postgres://postgres:123456@localhost:5432/codegig'
+'codegig',
+'postgres',
+'task#123',
+{
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
@@ -14,4 +19,5 @@ module.exports =  new Sequelize(process.env.DATABASE_URL, {
     acquire: 30000,
     idle: 10000
   },
-});
+}
+);

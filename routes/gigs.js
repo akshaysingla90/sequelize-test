@@ -18,66 +18,65 @@ router.get('/add', (req, res) => res.render('add'));
 
 // Add a gig
 router.post('/add', (req, res) => {
-  let { title, technologies, budget, description, contact_email } = req.body;
-  let errors = [];
-
-  // Validate Fields
-  if(!title) {
-    errors.push({ text: 'Please add a title' });
-  }
-  if(!technologies) {
-    errors.push({ text: 'Please add some technologies' });
-  }
-  if(!description) {
-    errors.push({ text: 'Please add a description' });
-  }
-  if(!contact_email) {
-    errors.push({ text: 'Please add a contact email' });
-  }
-
-  // Check for errors
-  if(errors.length > 0) {
-    res.render('add', {
-      errors,
-      title, 
-      technologies, 
-      budget, 
-      description, 
-      contact_email
-    });
-  } else {
-    if(!budget) {
-      budget = 'Unknown';
-    } else {
-      budget = `$${budget}`;
-    }
-
-    // Make lowercase and remove space after comma
-    technologies = technologies.toLowerCase().replace(/,[ ]+/g, ',');
-
-    // Insert into table
+ // Insert into table
+ console.log('===========================')
     Gig.create({
-      title,
-      technologies,
-      description,
-      budget,
-      contact_email
-    })
-      .then(gig => res.redirect('/gigs'))
+      "title":"aaaa",
+            "technologies" : "sss",
+            "description":"ssss",
+            "budget":"11",
+            "contact_email":"ytfhgf"
+      })
+      .then(gig => res.status(200).json({msg : "ok"}))
       .catch(err => res.render('error', {error:err.message}))
   }
-});
+);
 
 // Search for gigs
 router.get('/search', (req, res) => {
   let { term } = req.query;
 
   // Make lowercase
-  term = term.toLowerCase();
 
   Gig.findAll({ where: { technologies: { [Op.like]: '%' + term + '%' } } })
     .then(gigs => res.render('gigs', { gigs }))
     .catch(err => res.render('error', {error: err}));
+});
+
+router.get('/:id', (req, res) => {
+  let idToken = req.params.id;
+  Gig.findOne({ where: { id: idToken } } )
+  .then(result => res.status(200).json({msg:'ok', data: result}))
+  .catch(err => res.status(400).json({msg:'bad request'}))
+});
+
+router.get('/:id', async (req, res) => {
+  let idToken = req.params.id;
+  try{
+  let data=await Gig.findOne({ where: { id: idToken } } )
+  data.forEach(function (studentObj,index){
+    let  result;
+   if( studentObj.marks1>35 && studentObj.marks2>35 && studentObj.marks2>35  ){
+     result="pass"
+      return result
+   }
+   else
+   result="fail"
+   return result
+  })
+  
+  res.status(200).json({
+    data:{
+      msg:'ok',
+      data:result
+    }
+  })
+
+}
+
+  catch (error) {
+    console.log(error)
+}
 });
 
 module.exports = router;
