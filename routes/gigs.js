@@ -58,7 +58,6 @@ router.get("/result/:id", async (req, res) => {
     let data = await Gig.findOne({ where: { id: idToken } });
     // console.log(data);
     for (const a in data) {
-      console.log(data[a].marks1);
       let result;
       if (data[a].marks1 > 35 && data[a].marks2 > 35 && data[a].marks3 > 35) {
         result = "pass";
