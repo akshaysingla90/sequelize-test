@@ -56,7 +56,7 @@ router.get("/result/:id", async (req, res) => {
   let idToken = req.params.id;
   try {
     let data = await Gig.findOne({ where: { id: idToken } });
-    console.log(data);
+    // console.log(data);
     for (const a in data) {
       console.log(data[a].marks1);
       let result;
