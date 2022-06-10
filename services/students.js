@@ -1,12 +1,10 @@
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const { uuid } = require('uuidv4');
 
 const Student = require("../models/Student");
 let passingMarks = 35;
 
 const createStudentResult = async (studentResultData) => {
-    studentResultData.id = uuid()
     return await Student.create(studentResultData);
 };
 
