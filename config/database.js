@@ -1,7 +1,4 @@
 const Sequelize = require("sequelize");
-const dotenv = require("dotenv");
-
-dotenv.config();
 
 module.exports = new Sequelize("student", "postgres", "task#123", {
   host: "localhost",
