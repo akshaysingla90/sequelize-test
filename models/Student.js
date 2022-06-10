@@ -3,8 +3,9 @@ const db = require("../config/database");
 
 const Student = db.define("students", {
   id: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.UUIDV4,
     primaryKey: true,
+    allowNull: false
   },
   name: {
     type: Sequelize.STRING,
