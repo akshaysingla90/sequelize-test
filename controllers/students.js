@@ -6,6 +6,7 @@ const fs = require('streamifier');
 const getStudentResultById = async (req, res) => {
   try {
     let studentId = req.params.id;
+    if (!studentId) throw new Error('studentId is required')
     let data = await students.getStudentResult(studentId);
     result = data ? "passed" : "failed";
     return res.status(200).json({ data: result });
@@ -18,6 +19,7 @@ const getStudentResultById = async (req, res) => {
 const getStudentsResult = async (req, res) => {
   try {
     let resultStatus = req.query.resultStatus;
+    if (!resultStatus) throw new Error('resultStatus is required')
     let data = await students.getStudentsResultByStatus(resultStatus);
     res.status(200).json({ msg: "ok", result: data });
   } catch (error) {
