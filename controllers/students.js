@@ -1,6 +1,5 @@
 const students = require("../services/students");
 const fastcsv = require("fast-csv");
-// const fs = require("fs");
 const fs = require('streamifier');
 
 const getStudentResultById = async (req, res) => {
