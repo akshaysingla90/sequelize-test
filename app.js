@@ -17,7 +17,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 
 // Gig routes
-app.use("/student", require("./routes/gigs"));
+app.use("/student", require("./routes/student"));
 
 const PORT = process.env.PORT || 5000;
 

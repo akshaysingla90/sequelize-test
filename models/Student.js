@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../config/database");
 
-const Gig = db.define("students", {
+const Student = db.define("students", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -23,7 +23,7 @@ const Gig = db.define("students", {
   },
 });
 
-Gig.sync().then(() => {
+Student.sync().then(() => {
   console.log("table created");
 });
-module.exports = Gig;
+module.exports = Student;

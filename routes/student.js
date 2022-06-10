@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../config/database");
-const Gig = require("../models/Gig");
+const Student = require("../models/Student");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -55,7 +54,7 @@ router.post("/upload", function (req, res) {
 router.get("/result/:id", async (req, res) => {
   let idToken = req.params.id;
   try {
-    let data = await Gig.findOne({ where: { id: idToken } });
+    let data = await Student.findOne({ where: { id: idToken } });
     // console.log(data);
     for (const a in data) {
       let result;
@@ -82,7 +81,7 @@ router.get("/result/:id", async (req, res) => {
 
 router.get("/result", async (req, res) => {
   try {
-    let data = await Gig.findAll({
+    let data = await Student.findAll({
       where: {
         marks1: {
           [Op.gt]: 35,
